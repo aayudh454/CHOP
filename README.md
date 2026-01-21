@@ -32,11 +32,13 @@ Key filtering rules (high level):
 
 ### Task 3 (extra) — Top-10 “true positive likelihood” scoring
 - Notebook: `Top10 true positives.ipynb`
-- Approach: composite score integrating:
-  - Variant confidence: `QUAL`, `VQSLOD`, `QD`
-  - Mapping integrity: `MQ`, `FS`, `SOR`, `MQRankSum`, `ReadPosRankSum`
-  - Trio genotype / balance: `VAF`, `DP`, `GQ` across trio
-- Output: Top-10 table (CHROM, POS, REF, ALT, TYPE, PROBAND_VAF, TP_SCORE). :contentReference[oaicite:6]{index=6}
+After filtering to 88 high-confidence de novo variants, a composite **true positive likelihood score (TP_SCORE)** was computed to prioritize the most reliable calls **without manual IGV review**.
+
+The score integrates:
+- Variant call confidence (`QUAL`, `VQSLOD`, `QD`)
+- Mapping quality (`MQ`, `FS`, `SOR`, `MQRankSum`, `ReadPosRankSum`)
+- Trio genotype consistency (`DP`, `GQ`)
+- Allele balance (proband `VAF ≈ 0.5`, no parental ALT evidence)
 
 ### Table 1. Top 10 variants based on true positive score
 
