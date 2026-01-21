@@ -81,16 +81,3 @@ False-positive de novo variants occur when a site looks **present in the proband
 
 **How the pipeline mitigates these:** the applied filters emphasize strong call confidence (`QUAL`, `FILTER=PASS`, `VQSLOD`), robust mapping (`MQ`, rank-sums), and consistent trio evidence (high `DP/GQ`, balanced proband `VAF`, and near-zero parental `ALT` evidence), which collectively reduce the artifact modes above. 
 
-## Repository structure (suggested)
-
-```text
-.
-├── notebooks/
-│   ├── CHOP_test.ipynb
-│   └── Top10 true positives.ipynb
-├── outputs/
-│   ├── CDL-068-99.strict_denovo.tsv
-│   └── CDL-068-99.filtered_denovo.tsv
-├── docs/
-│   └── CHOP_ans_sheet.pdf
-└── README.md
