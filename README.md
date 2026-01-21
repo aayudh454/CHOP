@@ -40,6 +40,24 @@ Key filtering rules (high level):
 
 ---
 
+## Task 4 — Important sources of false-positive “de novo” calls
+
+False-positive de novo variants occur when a site looks **present in the proband** and **absent in both parents** due to technical/analytical artifacts rather than a true germline mutation. The main sources include: :contentReference[oaicite:1]{index=1}
+
+| Source | Mechanism | Key indicators (typical signals) |
+|---|---|---|
+| Sequencing error | Base miscalls / systematic error | Low `QUAL`, unstable/low `ALT` support, inconsistent `VAF` :contentReference[oaicite:2]{index=2} |
+| Mapping artifact | Misalignment in repeats/low complexity, paralogs | Low `MQ`, poor `MQRankSum`, clustered mismatches :contentReference[oaicite:3]{index=3} |
+| Strand / PCR bias | Strand imbalance, polymerase artifacts | High `FS`, high `SOR`, skewed read orientation :contentReference[oaicite:4]{index=4} |
+| Low parental depth | “Allele dropout” (parent truly has ALT but not observed) | Low parental `DP` / `GQ`, stochastic absence of `ALT` reads :contentReference[oaicite:5]{index=5} |
+| Proband allele imbalance | Noisy het call (esp. near thresholds) | Low `ALT` reads, `VAF` far from ~0.5 :contentReference[oaicite:6]{index=6} |
+| Parental mosaicism | True low-level variant in a parent (not germline) | Small parental `VAF` / occasional `ALT` reads :contentReference[oaicite:7]{index=7} |
+| Multi-allelic sites | Parsing/AD-index errors, complex local haplotypes | Complex `ALT` strings, ambiguous `AD` arrays / allele indexing :contentReference[oaicite:8]{index=8} |
+| Contamination / read leakage | Sample cross-talk or index hopping | Low-level `ALT` noise across samples, inconsistent patterns :contentReference[oaicite:9]{index=9} |
+| Reference/representation issues | Representation differences at recurrent loci | Recurrent “problem loci”, inconsistent normalization/left-alignment :contentReference[oaicite:10]{index=10} |
+
+**How the pipeline mitigates these:** the applied filters emphasize strong call confidence (`QUAL`, `FILTER=PASS`, `VQSLOD`), robust mapping (`MQ`, rank-sums), and consistent trio evidence (high `DP/GQ`, balanced proband `VAF`, and near-zero parental `ALT` evidence), which collectively reduce the artifact modes above. 
+
 ## Repository structure (suggested)
 
 ```text
