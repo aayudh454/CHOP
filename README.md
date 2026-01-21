@@ -38,6 +38,29 @@ Key filtering rules (high level):
   - Trio genotype / balance: `VAF`, `DP`, `GQ` across trio
 - Output: Top-10 table (CHROM, POS, REF, ALT, TYPE, PROBAND_VAF, TP_SCORE). :contentReference[oaicite:6]{index=6}
 
+### Table 1. Top 10 variants based on true positive score
+
+| CHROM | POS | REF | ALT | TYPE | PROBAND_VAF | TP_SCORE |
+|------|-----:|:---:|:---:|:---:|------------:|---------:|
+| chr5  | 1.1E+08 | G | T | SNV | 0.50 | 102.0741 |
+| chr10 | 95296731 | G | A | SNV | 0.50 | 101.3843 |
+| chr6  | 11271313 | A | C | SNV | 0.4902 | 99.81068 |
+| chr14 | 41468025 | G | A | SNV | 0.50 | 99.67155 |
+| chr8  | 43348633 | G | C | SNV | 0.50 | 99.66545 |
+| chr1  | 9999315 | G | A | SNV | 0.50 | 99.66110 |
+| chr8  | 1.25E+08 | A | G | SNV | 0.4909 | 99.64562 |
+| chr1  | 90679453 | T | C | SNV | 0.50 | 99.40641 |
+| chr1  | 2.3E+08 | A | C | SNV | 0.5091 | 99.07637 |
+| chr16 | 7723068 | A | C | SNV | 0.50 | 98.83429 |
+
+**Notes**
+- All Top-10 candidates are SNVs with near-ideal heterozygous VAF in the proband.
+- Strong mapping and strand metrics reduce alignment-driven artifacts.
+- Absence of parental ALT signal minimizes false positives due to allele dropout or mosaicism.
+
+Outputs:
+- `Top10_true_positive_variants.tsv`
+- `notebooks/Top10 true positives.ipynb`
 ---
 
 ## Task 4 — Important sources of false-positive “de novo” calls
